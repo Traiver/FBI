@@ -12,9 +12,9 @@
 #include "../../core/linkedlist.h"
 #include "../../core/screen.h"
 
-static list_item install_from_cdn = {"Install from CDN", COLOR_TEXT, action_install_cdn};
-static list_item delete_ticket = {"Delete Ticket", COLOR_TEXT, action_delete_ticket};
-static list_item delete_unused_tickets = {"Delete Unused Tickets", COLOR_TEXT, action_delete_tickets_unused};
+static list_item install_from_cdn = {"Installiere von CDN", COLOR_TEXT, action_install_cdn};
+static list_item delete_ticket = {"Lösche Ticket", COLOR_TEXT, action_delete_ticket};
+static list_item delete_unused_tickets = {"Lösche unbenutzte Tickets", COLOR_TEXT, action_delete_tickets_unused};
 
 typedef struct {
     populate_tickets_data populateData;
@@ -74,7 +74,7 @@ static void tickets_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("Ticket Action", "A: Select, B: Return", data, tickets_action_update, tickets_action_draw_top);
+    list_display("Ticket Action", "A: Auswählen, B: Zurück", data, tickets_action_update, tickets_action_draw_top);
 }
 
 static void tickets_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -142,5 +142,5 @@ void tickets_open() {
 
     data->populateData.finished = true;
 
-    list_display("Tickets", "A: Select, B: Return, X: Refresh", data, tickets_update, tickets_draw_top);
+    list_display("Tickets", "A: Auswählen, B: Zurück, X: Aktualisieren", data, tickets_update, tickets_draw_top);
 }

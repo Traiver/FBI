@@ -200,7 +200,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
     }
 
     struct in_addr addr = {(in_addr_t) gethostid()};
-    snprintf(text, PROGRESS_TEXT_MAX, "Waiting for connection...\nIP: %s\nPort: 5000", inet_ntoa(addr));
+    snprintf(text, PROGRESS_TEXT_MAX, "Warte auf Internetverbindung...\nIP: %s\nPort: 5000", inet_ntoa(addr));
 }
 
 static void remoteinstall_receive_urls_network() {
@@ -242,7 +242,7 @@ static void remoteinstall_receive_urls_network() {
         return;
     }
 
-    info_display("Receive URL(s)", "B: Return", false, data, remoteinstall_network_update, NULL);
+    info_display("Receive URL(s)", "B: Zurück", false, data, remoteinstall_network_update, NULL);
 }
 
 #define QR_IMAGE_WIDTH 400
@@ -374,12 +374,12 @@ static void remoteinstall_qr_update(ui_view* view, void* data, float* progress, 
 
             remoteinstall_set_last_urls((const char*) qrData.payload);
 
-            action_install_url("Install from the scanned QR code?", (const char*) qrData.payload, NULL, NULL, NULL);
+            action_install_url("Installiere von QR Code?", (const char*) qrData.payload, NULL, NULL, NULL);
             return;
         }
     }
 
-    snprintf(text, PROGRESS_TEXT_MAX, "Waiting for QR code...");
+    snprintf(text, PROGRESS_TEXT_MAX, "Warte auf QR Code...");
 }
 
 static void remoteinstall_scan_qr_code() {
@@ -424,14 +424,14 @@ static void remoteinstall_scan_qr_code() {
 
     data->tex = screen_allocate_free_texture();
 
-    info_display("QR Code Install", "B: Return", false, data, remoteinstall_qr_update, remoteinstall_qr_draw_top);
+    info_display("QR Code Install", "B: Zurück", false, data, remoteinstall_qr_update, remoteinstall_qr_draw_top);
 }
 
 static void remoteinstall_manually_enter_urls_onresponse(ui_view* view, void* data, SwkbdButton button, const char* response) {
     if(button == SWKBD_BUTTON_CONFIRM) {
         remoteinstall_set_last_urls(response);
 
-        action_install_url("Install from the entered URL(s)?", response, NULL, NULL, NULL);
+        action_install_url("Installiere von URL(s)?", response, NULL, NULL, NULL);
     }
 }
 
@@ -464,7 +464,7 @@ static void remoteinstall_forget_last_request() {
 }
 
 static list_item receive_urls_network = {"Receive URLs over the network", COLOR_TEXT, remoteinstall_receive_urls_network};
-static list_item scan_qr_code = {"Scan QR Code", COLOR_TEXT, remoteinstall_scan_qr_code};
+static list_item scan_qr_code = {"Scanne QR Code", COLOR_TEXT, remoteinstall_scan_qr_code};
 static list_item manually_enter_urls = {"Manually enter URLs", COLOR_TEXT, remoteinstall_manually_enter_urls};
 static list_item repeat_last_request = {"Repeat last request", COLOR_TEXT, remoteinstall_repeat_last_request};
 static list_item forget_last_request = {"Forget last request", COLOR_TEXT, remoteinstall_forget_last_request};
@@ -492,5 +492,5 @@ static void remoteinstall_update(ui_view* view, void* data, linked_list* items, 
 }
 
 void remoteinstall_open() {
-    list_display("Remote Install", "A: Select, B: Return", NULL, remoteinstall_update, NULL);
+    list_display("Remote Install", "A: Auswählen, B: Zurück", NULL, remoteinstall_update, NULL);
 }

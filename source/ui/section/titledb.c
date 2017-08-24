@@ -76,14 +76,14 @@ static void titledb_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("TitleDB Action", "A: Select, B: Return", data, titledb_action_update, titledb_action_draw_top);
+    list_display("TitleDB Action", "A: Auswählen, B: Zurück", data, titledb_action_update, titledb_action_draw_top);
 }
 
 static void titledb_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
     titledb_data* listData = (titledb_data*) data;
 
     if(!listData->populateData.itemsListed) {
-        static const char* text = "Loading title list, please wait...\nNOTE: Cancelling may take up to 15 seconds.";
+        static const char* text = "Lade Titelliste, bitte warten...";
 
         float textWidth;
         float textHeight;
@@ -153,5 +153,5 @@ void titledb_open() {
 
     data->populateData.finished = true;
 
-    list_display("TitleDB.com", "A: Select, B: Return, X: Refresh", data, titledb_update, titledb_draw_top);
+    list_display("TitleDB.com", "A: Auswählen, B: Zurück, X: Aktualisieren", data, titledb_update, titledb_draw_top);
 }

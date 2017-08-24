@@ -109,7 +109,7 @@ static void dumpnand_update(ui_view* view, void* data, float* progress, char* te
         info_destroy(view);
 
         if(R_SUCCEEDED(dumpData->result)) {
-            prompt_display_notify("Success", "NAND dumped.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("Erfolgreich", "NAND dumped.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         free(dumpData);
@@ -131,7 +131,7 @@ static void dumpnand_onresponse(ui_view* view, void* data, u32 response) {
 
         Result res = task_data_op(dumpData);
         if(R_SUCCEEDED(res)) {
-            info_display("Dumping NAND", "Press B to cancel.", true, data, dumpnand_update, NULL);
+            info_display("Dumping NAND", "Drücke B zum Abbrechen.", true, data, dumpnand_update, NULL);
         } else {
             error_display_res(NULL, NULL, res, "Failed to initiate NAND dump.");
             free(data);

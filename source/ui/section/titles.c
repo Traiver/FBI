@@ -14,18 +14,18 @@
 #include "../../core/screen.h"
 #include "../../core/util.h"
 
-static list_item launch_title = {"Launch Title", COLOR_TEXT, action_launch_title};
-static list_item delete_title = {"Delete Title", COLOR_TEXT, action_delete_title};
-static list_item delete_title_ticket = {"Delete Title And Ticket", COLOR_TEXT, action_delete_title_ticket};
-static list_item extract_smdh = {"Extract SMDH", COLOR_TEXT, action_extract_smdh};
-static list_item import_seed = {"Import Seed", COLOR_TEXT, action_import_seed};
-static list_item browse_save_data = {"Browse Save Data", COLOR_TEXT, action_browse_title_save_data};
-static list_item import_save_data = {"Import Save Data", COLOR_TEXT, action_import_twl_save};
-static list_item export_save_data = {"Export Save Data", COLOR_TEXT, action_export_twl_save};
-static list_item erase_save_data = {"Erase Save Data", COLOR_TEXT, action_erase_twl_save};
-static list_item import_secure_value = {"Import Secure Value", COLOR_TEXT, action_import_secure_value};
-static list_item export_secure_value = {"Export Secure Value", COLOR_TEXT, action_export_secure_value};
-static list_item delete_secure_value = {"Delete Secure Value", COLOR_TEXT, action_delete_secure_value};
+static list_item launch_title = {"Starte Title", COLOR_TEXT, action_launch_title};
+static list_item delete_title = {"Lösche Title", COLOR_TEXT, action_delete_title};
+static list_item delete_title_ticket = {"Lösche Title und Ticket", COLOR_TEXT, action_delete_title_ticket};
+static list_item extract_smdh = {"Extrahiere SMDH", COLOR_TEXT, action_extract_smdh};
+static list_item import_seed = {"Importiere Seed", COLOR_TEXT, action_import_seed};
+static list_item browse_save_data = {"Suche Save Data", COLOR_TEXT, action_browse_title_save_data};
+static list_item import_save_data = {"Importiere Save Data", COLOR_TEXT, action_import_twl_save};
+static list_item export_save_data = {"Exportiere Save Data", COLOR_TEXT, action_export_twl_save};
+static list_item erase_save_data = {"Lösche Save Data", COLOR_TEXT, action_erase_twl_save};
+static list_item import_secure_value = {"Importiere Secure Value", COLOR_TEXT, action_import_secure_value};
+static list_item export_secure_value = {"Exportiere Secure Value", COLOR_TEXT, action_export_secure_value};
+static list_item delete_secure_value = {"Lösche Secure Value", COLOR_TEXT, action_delete_secure_value};
 
 typedef struct {
     populate_titles_data populateData;
@@ -115,7 +115,7 @@ static void titles_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("Title Action", "A: Select, B: Return", data, titles_action_update, titles_action_draw_top);
+    list_display("Title Action", "A: Auswählen, B: Zurück", data, titles_action_update, titles_action_draw_top);
 }
 
 static void titles_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -157,15 +157,15 @@ static void titles_options_update(ui_view* view, void* data, linked_list* items,
     }
 
     if(linked_list_size(items) == 0) {
-        titles_options_add_entry(items, "Show game card", &listData->showGameCard);
-        titles_options_add_entry(items, "Show SD", &listData->showSD);
-        titles_options_add_entry(items, "Show NAND", &listData->showNAND);
-        titles_options_add_entry(items, "Sort by name", &listData->sortByName);
+        titles_options_add_entry(items, "Zeige Game Card", &listData->showGameCard);
+        titles_options_add_entry(items, "Zeige SD", &listData->showSD);
+        titles_options_add_entry(items, "Zeige NAND", &listData->showNAND);
+        titles_options_add_entry(items, "Sortieren nach Name", &listData->sortByName);
     }
 }
 
 static void titles_options_open(titles_data* data) {
-    list_display("Options", "A: Toggle, B: Return", data, titles_options_update, NULL);
+    list_display("Optionen", "A: Toggle, B: Zurück", data, titles_options_update, NULL);
 }
 
 static void titles_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -300,5 +300,5 @@ void titles_open() {
     data->showNAND = true;
     data->sortByName = true;
 
-    list_display("Titles", "A: Select, B: Return, X: Refresh, Select: Options", data, titles_update, titles_draw_top);
+    list_display("Titles", "A: Auswählen, B: Zurück, X: Aktualisieren, Select: Optionen", data, titles_update, titles_draw_top);
 }

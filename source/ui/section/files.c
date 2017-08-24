@@ -16,30 +16,30 @@
 #include "../../core/screen.h"
 #include "../../core/util.h"
 
-static list_item rename_opt = {"Rename", COLOR_TEXT, action_rename};
-static list_item copy = {"Copy", COLOR_TEXT, NULL};
-static list_item paste = {"Paste", COLOR_TEXT, action_paste_contents};
+static list_item rename_opt = {"Umbenennen", COLOR_TEXT, action_rename};
+static list_item copy = {"Kopieren", COLOR_TEXT, NULL};
+static list_item paste = {"Einfügen", COLOR_TEXT, action_paste_contents};
 
-static list_item delete_file = {"Delete", COLOR_TEXT, action_delete_file};
+static list_item delete_file = {"Löschen", COLOR_TEXT, action_delete_file};
 
-static list_item install_cia = {"Install CIA", COLOR_TEXT, action_install_cia};
-static list_item install_and_delete_cia = {"Install and delete CIA", COLOR_TEXT, action_install_cia_delete};
+static list_item install_cia = {"Installiere CIA", COLOR_TEXT, action_install_cia};
+static list_item install_and_delete_cia = {"Installiere und lösche CIA", COLOR_TEXT, action_install_cia_delete};
 
-static list_item install_ticket = {"Install ticket", COLOR_TEXT, action_install_ticket};
-static list_item install_and_delete_ticket = {"Install and delete ticket", COLOR_TEXT, action_install_ticket_delete};
+static list_item install_ticket = {"Installiere ticket", COLOR_TEXT, action_install_ticket};
+static list_item install_and_delete_ticket = {"Installiere und lösche ticket", COLOR_TEXT, action_install_ticket_delete};
 
-static list_item delete_dir = {"Delete", COLOR_TEXT, action_delete_dir};
-static list_item copy_all_contents = {"Copy all contents", COLOR_TEXT, NULL};
-static list_item delete_all_contents = {"Delete all contents", COLOR_TEXT, action_delete_dir_contents};
-static list_item new_folder = {"New folder", COLOR_TEXT, action_new_folder};
+static list_item delete_dir = {"Löschen", COLOR_TEXT, action_delete_dir};
+static list_item copy_all_contents = {"Kopiere alle Inhalte", COLOR_TEXT, NULL};
+static list_item delete_all_contents = {"Lösche alle Inhalte", COLOR_TEXT, action_delete_dir_contents};
+static list_item new_folder = {"Neuer Ordner", COLOR_TEXT, action_new_folder};
 
-static list_item install_all_cias = {"Install all CIAs", COLOR_TEXT, action_install_cias};
-static list_item install_and_delete_all_cias = {"Install and delete all CIAs", COLOR_TEXT, action_install_cias_delete};
-static list_item delete_all_cias = {"Delete all CIAs", COLOR_TEXT, action_delete_dir_cias};
+static list_item install_all_cias = {"Installiere alle CIAs", COLOR_TEXT, action_install_cias};
+static list_item install_and_delete_all_cias = {"Installiere und lösche alle CIAs", COLOR_TEXT, action_install_cias_delete};
+static list_item delete_all_cias = {"Lösche alle CIAs", COLOR_TEXT, action_delete_dir_cias};
 
-static list_item install_all_tickets = {"Install all tickets", COLOR_TEXT, action_install_tickets};
-static list_item install_and_delete_all_tickets = {"Install and delete all tickets", COLOR_TEXT, action_install_tickets_delete};
-static list_item delete_all_tickets = {"Delete all tickets", COLOR_TEXT, action_delete_dir_tickets};
+static list_item install_all_tickets = {"Installiere alle tickets", COLOR_TEXT, action_install_tickets};
+static list_item install_and_delete_all_tickets = {"Installiere und lösche alle tickets", COLOR_TEXT, action_install_tickets_delete};
+static list_item delete_all_tickets = {"Lösche alle tickets", COLOR_TEXT, action_delete_dir_tickets};
 
 typedef struct {
     populate_files_data populateData;
@@ -95,7 +95,7 @@ static void files_action_update(ui_view* view, void* data, linked_list* items, l
 
             Result res = 0;
             if(R_SUCCEEDED(res = clipboard_set_contents(actionData->parent->archive, info->path, selected == &copy_all_contents))) {
-                prompt_display_notify("Success", selected == &copy_all_contents ? "Current directory contents copied to clipboard." : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "Current directory copied to clipboard." : "File copied to clipboard.", COLOR_TEXT, info, ui_draw_file_info, NULL);
+                prompt_display_notify("Erfolgreich", selected == &copy_all_contents ? "Current directory contents copied to clipboard." : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "Current directory copied to clipboard." : "File copied to clipboard.", COLOR_TEXT, info, ui_draw_file_info, NULL);
             } else {
                 error_display_res(info, ui_draw_file_info, res, "Failed to copy to clipboard.");
             }
@@ -178,7 +178,7 @@ static void files_action_open(linked_list* items, list_item* selected, files_dat
         }
     }
 
-    list_display((((file_info*) selected->data)->attributes & FS_ATTRIBUTE_DIRECTORY) ? "Directory Action" : "File Action", "A: Select, B: Return", data, files_action_update, files_action_draw_top);
+    list_display((((file_info*) selected->data)->attributes & FS_ATTRIBUTE_DIRECTORY) ? "Directory Action" : "File Action", "A: Auswählen, B: Zurück", data, files_action_update, files_action_draw_top);
 }
 
 static void files_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -220,16 +220,16 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
     }
 
     if(linked_list_size(items) == 0) {
-        files_options_add_entry(items, "Show hidden", &listData->showHidden);
-        files_options_add_entry(items, "Show directories", &listData->showDirectories);
-        files_options_add_entry(items, "Show files", &listData->showFiles);
-        files_options_add_entry(items, "Show CIAs", &listData->showCias);
-        files_options_add_entry(items, "Show tickets", &listData->showTickets);
+        files_options_add_entry(items, "Zeige ausgeblendet", &listData->showHidden);
+        files_options_add_entry(items, "Zeige Verzeichnis", &listData->showDirectories);
+        files_options_add_entry(items, "Zeige Dateien", &listData->showFiles);
+        files_options_add_entry(items, "Zeige CIAs", &listData->showCias);
+        files_options_add_entry(items, "Zeige tickets", &listData->showTickets);
     }
 }
 
 static void files_options_open(files_data* data) {
-    list_display("Options", "A: Toggle, B: Return", data, files_options_update, NULL);
+    list_display("Options", "A: Toggle, B: Zurück", data, files_options_update, NULL);
 }
 
 static void files_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -329,7 +329,7 @@ static void files_update(ui_view* view, void* data, linked_list* items, list_ite
     if(selected != NULL && selected->data != NULL && (selectedTouched || (hidKeysDown() & KEY_A))) {
         file_info* fileInfo = (file_info*) selected->data;
 
-        if((fileInfo->attributes & FS_ATTRIBUTE_DIRECTORY) && strncmp(selected->name, "<current directory>", LIST_ITEM_NAME_MAX) != 0) {
+        if((fileInfo->attributes & FS_ATTRIBUTE_DIRECTORY) && strncmp(selected->name, "<Aktuelles Verzeichnis>", LIST_ITEM_NAME_MAX) != 0) {
             files_navigate(listData, items, fileInfo->path);
         } else {
             files_action_open(items, selected, listData);
@@ -417,7 +417,7 @@ void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
         return;
     }
 
-    list_display("Files", "A: Select, B: Back, X: Refresh, Select: Options", data, files_update, files_draw_top);
+    list_display("Dateien", "A: Auswählen, B: Zurück, X: Aktualisieren, Select: Optionen", data, files_update, files_draw_top);
 }
 
 static void files_open_nand_warning_onresponse(ui_view* view, void* data, u32 response) {

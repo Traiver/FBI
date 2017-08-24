@@ -14,9 +14,9 @@
 #include "../../core/screen.h"
 #include "../../core/util.h"
 
-static list_item browse_user_save_data = {"Browse User Save Data", COLOR_TEXT, action_browse_user_ext_save_data};
-static list_item browse_spotpass_save_data = {"Browse SpotPass Save Data", COLOR_TEXT, action_browse_boss_ext_save_data};
-static list_item delete_save_data = {"Delete Save Data", COLOR_TEXT, action_delete_ext_save_data};
+static list_item browse_user_save_data = {"Durchsuche User Save Data", COLOR_TEXT, action_browse_user_ext_save_data};
+static list_item browse_spotpass_save_data = {"Durchsuche SpotPass Save Data", COLOR_TEXT, action_browse_boss_ext_save_data};
+static list_item delete_save_data = {"Durchsuche Save Data", COLOR_TEXT, action_delete_ext_save_data};
 
 typedef struct {
     populate_ext_save_data_data populateData;
@@ -80,7 +80,7 @@ static void extsavedata_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("Ext Save Data Action", "A: Select, B: Return", data, extsavedata_action_update, extsavedata_action_draw_top);
+    list_display("Ext Save Data Action", "A: Auswählen, B: Zurück", data, extsavedata_action_update, extsavedata_action_draw_top);
 }
 
 static void extsavedata_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -122,14 +122,14 @@ static void extsavedata_options_update(ui_view* view, void* data, linked_list* i
     }
 
     if(linked_list_size(items) == 0) {
-        extsavedata_options_add_entry(items, "Show SD", &listData->showSD);
-        extsavedata_options_add_entry(items, "Show NAND", &listData->showNAND);
-        extsavedata_options_add_entry(items, "Sort by name", &listData->sortByName);
+        extsavedata_options_add_entry(items, "Zeige SD", &listData->showSD);
+        extsavedata_options_add_entry(items, "Zeige NAND", &listData->showNAND);
+        extsavedata_options_add_entry(items, "Sortiere nach Name", &listData->sortByName);
     }
 }
 
 static void extsavedata_options_open(extsavedata_data* data) {
-    list_display("Options", "A: Toggle, B: Return", data, extsavedata_options_update, NULL);
+    list_display("Optionen", "A: Toggle, B: Zurück", data, extsavedata_options_update, NULL);
 }
 
 static void extsavedata_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -254,5 +254,5 @@ void extsavedata_open() {
     data->showNAND = true;
     data->sortByName = true;
 
-    list_display("Ext Save Data", "A: Select, B: Return, X: Refresh, Select: Options", data, extsavedata_update, extsavedata_draw_top);
+    list_display("Ext Save Data", "A: Auswählen, B: Zurück, X: Aktualisieren, Select: Optionen", data, extsavedata_update, extsavedata_draw_top);
 }
