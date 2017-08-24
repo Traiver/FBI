@@ -149,7 +149,7 @@ static void ui_draw_top(ui_view* ui) {
     screen_set_base_alpha(ui_fade_alpha);
 
     char verText[64];
-    snprintf(verText, 64, "Ver. %d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_MICRO);
+    snprintf(verText, 64, "Ver. %d.%d.%d-DE", VERSION_MAJOR, VERSION_MINOR, VERSION_MICRO);
 
     float verWidth;
     float verHeight;
@@ -500,7 +500,7 @@ void ui_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2, 
                      "Title ID: %016llX\n"
                      "Version: %hu (%d.%d.%d)\n"
                      "Region: %s\n"
-                     "Installed Size: %.2f %s",
+                     "Installierte Größe: %.2f %s",
                      info->ciaInfo.titleId,
                      info->ciaInfo.version, (info->ciaInfo.version >> 10) & 0x3F, (info->ciaInfo.version >> 4) & 0x3F, info->ciaInfo.version & 0xF,
                      regionString,
@@ -590,7 +590,7 @@ void ui_draw_title_info(ui_view* view, void* data, float x1, float y1, float x2,
              "Version: %hu (%d.%d.%d)\n"
              "Product Code: %s\n"
              "Region: %s\n"
-             "Size: %.2f %s",
+             "Größe: %.2f %s",
              info->titleId,
              info->mediaType == MEDIATYPE_NAND ? "NAND" : info->mediaType == MEDIATYPE_SD ? "SD" : "Game Card",
              info->version, (info->version >> 10) & 0x3F, (info->version >> 4) & 0x3F, info->version & 0xF,
@@ -621,10 +621,10 @@ void ui_draw_titledb_info(ui_view* view, void* data, float x1, float y1, float x
     // TODO: Latest version disabled pending TitleDB pull request.
     snprintf(infoText, sizeof(infoText),
              "Title ID: %016llX\n"
-             "Installed Version: %hu (%d.%d.%d)\n"
+             "Installierte Version: %hu (%d.%d.%d)\n"
              //"Latest Version: %hu (%d.%d.%d)\n"
-             "Size: %.2f %s\n"
-             "Updated At: %s %s",
+             "Größe: %.2f %s\n"
+             "Letztes Update: %s %s",
              info->titleId,
              info->installedVersion, (info->installedVersion >> 10) & 0x3F, (info->installedVersion >> 4) & 0x3F, info->installedVersion & 0xF,
              //info->latestVersion, (info->latestVersion >> 10) & 0x3F, (info->latestVersion >> 4) & 0x3F, info->latestVersion & 0xF,

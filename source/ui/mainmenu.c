@@ -10,17 +10,17 @@
 #include "../core/linkedlist.h"
 #include "../core/screen.h"
 
-static list_item sd = {"SD", COLOR_TEXT, files_open_sd};
+static list_item sd = {"SD Karte", COLOR_TEXT, files_open_sd};
 static list_item ctr_nand = {"CTR NAND", COLOR_TEXT, files_open_ctr_nand};
 static list_item twl_nand = {"TWL NAND", COLOR_TEXT, files_open_twl_nand};
 static list_item twl_photo = {"TWL Photo", COLOR_TEXT, files_open_twl_photo};
 static list_item twl_sound = {"TWL Sound", COLOR_TEXT, files_open_twl_sound};
 static list_item dump_nand = {"Dump NAND", COLOR_TEXT, dumpnand_open};
 static list_item titles = {"Titles", COLOR_TEXT, titles_open};
-static list_item pending_titles = {"Pending Titles", COLOR_TEXT, pendingtitles_open};
+static list_item pending_titles = {"Ausstehende Titles", COLOR_TEXT, pendingtitles_open};
 static list_item tickets = {"Tickets", COLOR_TEXT, tickets_open};
-static list_item ext_save_data = {"Ext Save Data", COLOR_TEXT, extsavedata_open};
-static list_item system_save_data = {"System Save Data", COLOR_TEXT, systemsavedata_open};
+static list_item ext_save_data = {"Ext Speicherdaten", COLOR_TEXT, extsavedata_open};
+static list_item system_save_data = {"Systemspeicherdaten", COLOR_TEXT, systemsavedata_open};
 static list_item titledb = {"TitleDB", COLOR_TEXT, titledb_open};
 static list_item remote_install = {"Remote Install", COLOR_TEXT, remoteinstall_open};
 static list_item update = {"Update", COLOR_TEXT, update_open};
@@ -67,5 +67,5 @@ static void mainmenu_update(ui_view* view, void* data, linked_list* items, list_
 }
 
 void mainmenu_open() {
-    list_display("Main Menu", "A: Select, START: Exit", NULL, mainmenu_update, mainmenu_draw_top);
+    list_display("Hauptmenü", "A: Auswählen, START: Verlassen", NULL, mainmenu_update, mainmenu_draw_top);
 }
